@@ -13,8 +13,12 @@ import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.core.app.NotificationCompat;
+
+import android.util.Base64;
 import android.util.Log;
 
+import com.clevertap.android.sdk.CleverTapAPI;
+import com.clevertap.android.sdk.NotificationInfo;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -32,42 +36,65 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 	public void onMessageReceived(RemoteMessage remoteMessage) {
 		super.onMessageReceived(remoteMessage);
 		RemoteMessage.Notification notification = remoteMessage.getNotification();
-		Map<String, String> data = remoteMessage.getData();
-		Log.d("FROM", remoteMessage.getFrom());
-		sendNotification(notification, data);
+		try {
+			if (remoteMessage.getData().size() > 0) {
+				Bundle extras = new Bundle();
+				for (Map.Entry<String, String> entry : remoteMessage.getData().entrySet()) {
+					extras.putString(entry.getKey(), entry.getValue());
+					Log.d("key,value", entry.getKey()+" and "+entry.getValue());
+				}
+
+				NotificationInfo info = CleverTapAPI.getNotificationInfo(extras);
+
+
+				if (info.fromCleverTap) {
+					//CleverTapAPI.createNotification(getApplicationContext(), extras);
+					sendNotification(notification,extras);
+				} else {
+					Map<String, String> data = remoteMessage.getData();
+					Log.d("FROM", remoteMessage.getFrom());
+					sendNotification(notification, extras);
+				}
+			}
+		} catch (Throwable t) {
+			Log.d("MYFCMLIST", "Error parsing FCM message", t);
+		}
+
+
 	}
 
-	private void sendNotification(RemoteMessage.Notification notification, Map<String, String> data) {
+	private void sendNotification(RemoteMessage.Notification notification, Bundle data) {
 		Bundle bundle = new Bundle();
-		bundle.putString(FCM_PARAM, data.get(FCM_PARAM));
 
+bundle.putBundle("bundle",data);
 		Intent intent = new Intent(this, SecondActivity.class);
 		intent.putExtras(bundle);
 
+	//	Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
-				.setContentTitle(notification.getTitle())
-				.setContentText(notification.getBody())
+				.setContentTitle(data.getString("nm"))
+				.setContentText(data.getString("nt"))
 				.setAutoCancel(true)
 				.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
 				//.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.win))
 				.setContentIntent(pendingIntent)
 				.setContentInfo("Hello")
-				.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
 				.setColor(getColor(R.color.colorAccent))
 				.setLights(Color.RED, 1000, 300)
 				.setDefaults(Notification.DEFAULT_VIBRATE)
 				.setNumber(++numMessages)
 				.setSmallIcon(R.drawable.ic_notification);
 
+
 		try {
-			String picture = data.get(FCM_PARAM);
+			String picture = data.getString("wzrk_bp");
 			if (picture != null && !"".equals(picture)) {
 				URL url = new URL(picture);
 				Bitmap bigPicture = BitmapFactory.decodeStream(url.openConnection().getInputStream());
 				notificationBuilder.setStyle(
-						new NotificationCompat.BigPictureStyle().bigPicture(bigPicture).setSummaryText(notification.getBody())
+						new NotificationCompat.BigPictureStyle().bigPicture(bigPicture).setSummaryText(data.getString("wzrk_nms"))
 				);
 			}
 		} catch (IOException e) {
