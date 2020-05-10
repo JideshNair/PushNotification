@@ -1,4 +1,4 @@
-# Push Templates SDK by CleverTap
+# Video Notification SDK by CleverTap
 
 The Video Notification Templates SDK helps you engage with your users using Video based  Push Notification templates built specifically to work with CleverTap
 
