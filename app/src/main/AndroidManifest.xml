@@ -57,7 +57,7 @@
 			android:launchMode="singleTask">
 			<intent-filter>
 				<action android:name="OPEN_ACTIVITY_1"/>
-				<!--category android:name="android.intent.category.DEFAULT"/-->
+				<category android:name="android.intent.category.DEFAULT"/>
 			</intent-filter>
 		</activity>
 
