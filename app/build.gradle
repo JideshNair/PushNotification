@@ -42,12 +42,14 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
     implementation 'com.clevertap.android:clevertap-android-sdk:3.8.0'
-    implementation 'com.google.firebase:firebase-messaging:20.1.6'
+    implementation 'com.google.firebase:firebase-messaging:20.2.0'
     implementation 'com.google.android.gms:play-services-base:17.2.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.exoplayer:exoplayer:2.10.2'
     implementation 'com.android.installreferrer:installreferrer:1.1.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation files('src/main/libs/MiPush_SDK_Client_3_7_6.jar')
+
 }
 
 apply plugin: 'com.google.gms.google-services'

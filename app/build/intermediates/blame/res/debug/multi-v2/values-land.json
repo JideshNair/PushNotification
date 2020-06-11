@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/jidesh/Downloads/FirebaseCloudMessaging-Android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
+            "map": [
+                {
+                    "source": "/Users/jidesh/.gradle/caches/transforms-2/files-2.1/ccf433f3d17a2d2eaca50e1363394ef2/jetified-clevertap-android-sdk-3.8.0/res/values-land/values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,106,159,217,276,333,387",
+                        "endColumns": "50,52,57,58,56,53,51",
+                        "endOffsets": "101,154,212,271,328,382,434"
+                    },
+                    "to": {
+                        "startLines": "5,6,7,8,9,10,11",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "264,315,368,426,485,542,596",
+                        "endColumns": "50,52,57,58,56,53,51",
+                        "endOffsets": "310,363,421,480,537,591,643"
+                    }
+                },
+                {
+                    "source": "/Users/jidesh/.gradle/caches/transforms-2/files-2.1/96e58c8993fe1254ceee45c3531abce7/appcompat-1.1.0/res/values-land/values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,125,196",
+                        "endColumns": "69,70,67",
+                        "endOffsets": "120,191,259"
+                    }
+                }
+            ]
+        }
+    ]
+}

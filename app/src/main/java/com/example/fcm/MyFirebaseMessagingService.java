@@ -16,23 +16,31 @@ import androidx.core.app.NotificationCompat;
 
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.clevertap.android.sdk.CleverTapAPI;
 import com.clevertap.android.sdk.NotificationInfo;
+import com.clevertap.android.sdk.Utils;
+import com.example.fcm.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.xiaomi.mipush.sdk.MiPushMessage;
+import com.xiaomi.mipush.sdk.PushMessageReceiver;
+
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 
-public class MyFirebaseMessagingService extends FirebaseMessagingService {
+public class MyFirebaseMessagingService extends PushMessageReceiver  {
 	public static final String FCM_PARAM = "picture";
 	private static final String CHANNEL_NAME = "FCM";
 	private static final String CHANNEL_DESC = "Firebase Cloud Messaging";
 	private int numMessages = 0;
 
-	@Override
+
+	/*@Override
 	public void onMessageReceived(RemoteMessage remoteMessage) {
 		super.onMessageReceived(remoteMessage);
 		RemoteMessage.Notification notification = remoteMessage.getNotification();
@@ -63,17 +71,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 	}
 
-	private void sendNotification(RemoteMessage.Notification notification, Bundle data) {
+	x */
+
+	private void sendNotification( Context ctx,Bundle data) {
 		Bundle bundle = new Bundle();
 
 bundle.putBundle("bundle",data);
-		Intent intent = new Intent(this, SecondActivity.class);
+		Intent intent = new Intent(ctx, SecondActivity.class);
 		intent.putExtras(bundle);
 
 	//	Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+		PendingIntent pendingIntent = PendingIntent.getActivity(ctx, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-		NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
+		NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(ctx, ctx.getString(R.string.notification_channel_id))
 				.setContentTitle(data.getString("nm"))
 				.setContentText(data.getString("nt"))
 				.setAutoCancel(true)
@@ -81,7 +91,7 @@ bundle.putBundle("bundle",data);
 				//.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.win))
 				.setContentIntent(pendingIntent)
 				.setContentInfo("Hello")
-				.setColor(getColor(R.color.colorAccent))
+				.setColor(ctx.getColor(R.color.colorAccent))
 				.setLights(Color.RED, 1000, 300)
 				.setDefaults(Notification.DEFAULT_VIBRATE)
 				.setNumber(++numMessages)
@@ -101,11 +111,11 @@ bundle.putBundle("bundle",data);
 			e.printStackTrace();
 		}
 
-		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		NotificationManager notificationManager = (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 			NotificationChannel channel = new NotificationChannel(
-					getString(R.string.notification_channel_id), CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT
+					ctx.getString(R.string.notification_channel_id), CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT
 			);
 			channel.setDescription(CHANNEL_DESC);
 			channel.setShowBadge(true);
@@ -121,5 +131,34 @@ bundle.putBundle("bundle",data);
 
 		assert notificationManager != null;
 		notificationManager.notify(0, notificationBuilder.build());
+	}
+
+	@Override
+	public void onReceivePassThroughMessage(Context context, MiPushMessage message) {
+
+		try {
+			String ctData = message.getContent();
+			Bundle extras = Utils.stringToBundle(ctData);
+		//	CleverTapAPI.createNotification(context,extras);
+
+	final NotificationHelper notificationHelper = NotificationHelper.getInstance(context.getApplicationContext());
+			notificationHelper.postAsyncSafely("Duplicate Check", new Runnable() {
+				@Override
+				public void run() {
+					if(!notificationHelper.isNotificationPresent(extras)) {
+						CleverTapAPI.createNotification(context, extras);
+
+						
+						notificationHelper.saveNotification(extras);
+					}
+				}
+			});
+
+
+		//	sendNotification(context,extras);
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 }

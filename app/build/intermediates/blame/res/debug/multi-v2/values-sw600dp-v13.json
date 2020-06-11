@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/jidesh/Downloads/FirebaseCloudMessaging-Android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "map": [
+                {
+                    "source": "/Users/jidesh/.gradle/caches/transforms-2/files-2.1/ccf433f3d17a2d2eaca50e1363394ef2/jetified-clevertap-android-sdk-3.8.0/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,106,159,217,276,333,387",
+                        "endColumns": "50,52,57,58,56,53,51",
+                        "endOffsets": "101,154,212,271,328,382,434"
+                    },
+                    "to": {
+                        "startLines": "10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "611,662,715,773,832,889,943",
+                        "endColumns": "50,52,57,58,56,53,51",
+                        "endOffsets": "657,710,768,827,884,938,990"
+                    }
+                },
+                {
+                    "source": "/Users/jidesh/.gradle/caches/transforms-2/files-2.1/96e58c8993fe1254ceee45c3531abce7/appcompat-1.1.0/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,193,263,337,413,472,543",
+                        "endColumns": "68,68,69,73,75,58,70,67",
+                        "endOffsets": "119,188,258,332,408,467,538,606"
+                    }
+                }
+            ]
+        }
+    ]
+}

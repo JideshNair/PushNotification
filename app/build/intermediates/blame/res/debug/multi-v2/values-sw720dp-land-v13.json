@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/jidesh/Downloads/FirebaseCloudMessaging-Android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw720dp-land-v13/values-sw720dp-land-v13.xml",
+            "map": [
+                {
+                    "source": "/Users/jidesh/.gradle/caches/transforms-2/files-2.1/ccf433f3d17a2d2eaca50e1363394ef2/jetified-clevertap-android-sdk-3.8.0/res/values-sw720dp-land-v13/values-sw720dp-land-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,106,159,217,276,333,387",
+                        "endColumns": "50,52,57,58,56,53,51",
+                        "endOffsets": "101,154,212,271,328,382,434"
+                    }
+                }
+            ]
+        }
+    ]
+}
