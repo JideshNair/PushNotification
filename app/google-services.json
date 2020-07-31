@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "779324873871",
+    "firebase_url": "https://homes-6db6f.firebaseio.com",
+    "project_id": "homes-6db6f",
+    "storage_bucket": "homes-6db6f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779324873871:android:4c4f43ce4a385b8f3ae4fa",
+        "android_client_info": {
+          "package_name": "com.homerevise.studyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779324873871-7qn02m0fvm41ba561b3cm2eeta8l0s5m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.homerevise.studyapp",
+            "certificate_hash": "8924c3dff74281e5e5bd2111f907f9996536c576"
+          }
+        },
+        {
+          "client_id": "779324873871-e70cran809brkl4ma9udl76vartj475l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBY_4dHuETZiTwgblt3KWDwcDzndZ0hmRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779324873871-nk2crhek1e9jpbipoh3lnrirp6nps33s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779324873871:android:2670ee47f146c507",
+        "android_client_info": {
+          "package_name": "hr.online.educationalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779324873871-e70cran809brkl4ma9udl76vartj475l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBY_4dHuETZiTwgblt3KWDwcDzndZ0hmRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779324873871-nk2crhek1e9jpbipoh3lnrirp6nps33s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

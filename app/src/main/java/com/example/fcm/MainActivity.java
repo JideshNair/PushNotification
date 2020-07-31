@@ -1,5 +1,6 @@
 package com.example.fcm;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.clevertap.android.sdk.ActivityLifecycleCallback;
 import com.clevertap.android.sdk.CleverTapAPI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,10 +30,13 @@ public class MainActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		Intent intent = getIntent();
+		String id = intent.getStringExtra("extraKey1");
+		String name = intent.getStringExtra("extraKey2");
 
 		 clevertapDefaultInstance = CleverTapAPI.getDefaultInstance(getApplicationContext());
-		String fcmRegId = FirebaseInstanceId.getInstance().getToken();
-		clevertapDefaultInstance.pushFcmRegistrationId(fcmRegId,true);
+
+		CleverTapAPI.createNotificationChannel(this,"Test","Push Template App Channel","Channel for Push Template App", NotificationManager.IMPORTANCE_HIGH,true);
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
 			String tmp = "";
@@ -47,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 			public void onComplete(@NonNull Task<InstanceIdResult> task) {
 				if (!task.isSuccessful()) {
 					token = task.getException().getMessage();
+					clevertapDefaultInstance.pushFcmRegistrationId(token,true);
 					Log.w("FCM TOKEN Failed", task.getException());
 				} else {
 					token = task.getResult().getToken();
@@ -55,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 		Button bt=findViewById(R.id.event);
+		bt.setText(id);
 		bt.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {

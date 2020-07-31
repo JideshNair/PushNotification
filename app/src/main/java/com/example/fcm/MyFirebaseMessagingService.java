@@ -12,6 +12,8 @@ import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import android.util.Base64;
@@ -19,6 +21,7 @@ import android.util.Log;
 
 import com.clevertap.android.sdk.CleverTapAPI;
 import com.clevertap.android.sdk.NotificationInfo;
+
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -31,10 +34,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 	private static final String CHANNEL_NAME = "FCM";
 	private static final String CHANNEL_DESC = "Firebase Cloud Messaging";
 	private int numMessages = 0;
-
+	CleverTapAPI clevertapDefaultInstance;
 	@Override
 	public void onMessageReceived(RemoteMessage remoteMessage) {
 		super.onMessageReceived(remoteMessage);
+
 		RemoteMessage.Notification notification = remoteMessage.getNotification();
 		try {
 			if (remoteMessage.getData().size() > 0) {
@@ -48,8 +52,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
 				if (info.fromCleverTap) {
-					//CleverTapAPI.createNotification(getApplicationContext(), extras);
-					sendNotification(notification,extras);
+
+						CleverTapAPI.createNotification(getApplicationContext(), extras);
+
 				} else {
 					Map<String, String> data = remoteMessage.getData();
 					Log.d("FROM", remoteMessage.getFrom());
@@ -61,6 +66,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 		}
 
 
+	}
+
+	@Override
+	public void onNewToken(@NonNull String s) {
+		super.onNewToken(s);
+		clevertapDefaultInstance = CleverTapAPI.getDefaultInstance(getApplicationContext());
+		clevertapDefaultInstance.pushFcmRegistrationId(s,true);
 	}
 
 	private void sendNotification(RemoteMessage.Notification notification, Bundle data) {
@@ -86,6 +98,7 @@ bundle.putBundle("bundle",data);
 				.setDefaults(Notification.DEFAULT_VIBRATE)
 				.setNumber(++numMessages)
 				.setSmallIcon(R.drawable.ic_notification);
+
 
 
 		try {

@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.android.exoplayer:exoplayer-hls:2.10.2@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/01df5ef74da8cb59c15f83a8182d03bb/exoplayer-hls-2.10.2/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/01df5ef74da8cb59c15f83a8182d03bb/exoplayer-hls-2.10.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/01df5ef74da8cb59c15f83a8182d03bb/exoplayer-hls-2.10.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/01df5ef74da8cb59c15f83a8182d03bb/exoplayer-hls-2.10.2/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.exoplayer/exoplayer-hls/2.10.2/c94f0f3bbae353e9803a7dce552d114b1b7e4d4b/exoplayer-hls-2.10.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.exoplayer/exoplayer-hls/2.10.2/92228f88579de2ad659289b27fc03f410722af3d/exoplayer-hls-2.10.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
