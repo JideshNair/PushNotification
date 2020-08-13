@@ -20,10 +20,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.segment.analytics.Analytics;
+import com.segment.analytics.Properties;
+import com.segment.analytics.Traits;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
-
+	Random mRandom = new Random();
 	private String token;
 	CleverTapAPI clevertapDefaultInstance;
 	@Override
@@ -71,7 +78,30 @@ public class MainActivity extends AppCompatActivity {
 	}
 public void  createEvent()
 {
-	 clevertapDefaultInstance.pushEvent("ButtonClick");
+	String newUser = Integer.toString(Math.abs(mRandom.nextInt()));
+	ArrayList<String> testArr = new ArrayList<>();
+	testArr.add("one");
+	testArr.add("two");
+	testArr.add("three");
+	Traits traits = new Traits();
+	traits.putEmail("foo@foo.com");
+	traits.putName("FooName");
+	traits.putGender("male");
+	traits.putPhone("+14155551234");
+	traits.put("boolean", true);
+	traits.put("integer", 50);
+	traits.put("float", 1.5);
+	traits.put("long", 12345L);
+	traits.put("string", "hello");
+	traits.put("stringInt", "1");
+	traits.put("testStringArr", testArr);
+	Analytics.with(getApplicationContext()).identify(newUser, traits, null);
+	Analytics.with(getApplicationContext()).screen("Home Screen");
+	// clevertapDefaultInstance.pushEvent("ButtonClick");
+	Analytics.with(getApplicationContext()).track("testEvent From Segment",
+			new Properties().putValue("value", "testValue")
+					.putValue("testDate", new Date(System.currentTimeMillis()))
+	);
 	Toast.makeText(MainActivity.this,"Event ButtonClick is triggered ",Toast.LENGTH_LONG).show();
 }
 
