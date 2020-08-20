@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.clevertap.android:clevertap-android-sdk:3.8.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bf2cb3fe05809e70f9f94dac548681fb/jetified-clevertap-android-sdk-3.8.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bf2cb3fe05809e70f9f94dac548681fb/jetified-clevertap-android-sdk-3.8.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bf2cb3fe05809e70f9f94dac548681fb/jetified-clevertap-android-sdk-3.8.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e645c75590524af1162bf662b34688f8/jetified-clevertap-android-sdk-3.8.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e645c75590524af1162bf662b34688f8/jetified-clevertap-android-sdk-3.8.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e645c75590524af1162bf662b34688f8/jetified-clevertap-android-sdk-3.8.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

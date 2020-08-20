@@ -8,7 +8,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     defaultConfig {
-        applicationId "com.homerevise.studyapp"
+        applicationId "com.example.fcm"
         minSdkVersion 23
         targetSdkVersion compileAndTargetSdkVersion
         versionCode 1
