@@ -20,8 +20,11 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.clevertap.android.sdk.CleverTapAPI;
-import com.clevertap.android.sdk.NotificationInfo;
 
+
+import com.clevertap.android.sdk.pushnotification.NotificationInfo;
+import com.clevertap.pushtemplates.TemplateRenderer;
+import com.clevertap.pushtemplates.Utils;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -52,8 +55,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
 				if (info.fromCleverTap) {
-
+					if (Utils.isForPushTemplates(extras)) {
+						TemplateRenderer.createNotification(getApplicationContext(), extras);
+						//TemplateRenderer.createNotification(context, extras, config);
+					} else {
 						CleverTapAPI.createNotification(getApplicationContext(), extras);
+					}
+
+						//CleverTapAPI.createNotification(getApplicationContext(), extras);
 
 				} else {
 					Map<String, String> data = remoteMessage.getData();

@@ -2,5 +2,6 @@
 	<string name="app_name">CleverTapTest</string>
 
 	<string name="notification_channel_id">default</string>
-
+	<string name="xiaomi_app_key"></string>
+	<string name="xiaomi_app_id"></string>
 </resources>
