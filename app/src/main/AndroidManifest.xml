@@ -43,6 +43,14 @@
 		<meta-data
 			android:name="CLEVERTAP_TOKEN"
 			android:value="a45-4a2"/>
+		<meta-data
+			android:name="CLEVERTAP_XIAOMI_APP_KEY"
+			android:value="@string/xiaomi_app_key" />
+
+		<meta-data
+			android:name="CLEVERTAP_XIAOMI_APP_ID"
+			android:value="@string/xiaomi_app_id" />
+
 		<service
 			android:name=".MyFirebaseMessagingService"
 			android:exported="false">
@@ -103,31 +111,12 @@
 		</receiver>
 		<activity android:name=".MainActivity">
 			<intent-filter>
-				<action android:name="android.intent.action.MAIN"/>
-				<category android:name="android.intent.category.LAUNCHER"/>
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.BROWSABLE" />
-				<data android:scheme="https" android:host="www.example.com" />
-				<data android:scheme="app" android:host="open.my.app" />
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 
-			<intent-filter>
-				<data android:scheme="yourapp" />
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.BROWSABLE" />
-			</intent-filter>
 
-			<!-- Branch App Links (optional) -->
-			<intent-filter android:autoVerify="true">
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.BROWSABLE" />
-				<data android:scheme="https" android:host="example.app.link" />
-				<!-- example-alternate domain is required for App Links when the Journeys/Web SDK and Deepviews are used inside your website.  -->
-				<data android:scheme="https" android:host="example-alternate.app.link" />
-			</intent-filter>
+
 		</activity>
 		<receiver
 			android:name=".xiomireceiver"

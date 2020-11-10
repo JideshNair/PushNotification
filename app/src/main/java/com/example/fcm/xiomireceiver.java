@@ -12,11 +12,16 @@ import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
 import com.clevertap.android.sdk.CleverTapAPI;
 import com.clevertap.android.sdk.Utils;
+import com.xiaomi.mipush.sdk.ErrorCode;
+import com.xiaomi.mipush.sdk.MiPushClient;
+import com.xiaomi.mipush.sdk.MiPushCommandMessage;
 import com.xiaomi.mipush.sdk.MiPushMessage;
 import com.xiaomi.mipush.sdk.PushMessageReceiver;
 
@@ -24,13 +29,14 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 public class xiomireceiver extends PushMessageReceiver {
     public static final String FCM_PARAM = "picture";
     private static final String CHANNEL_NAME = "FCM";
     private static final String CHANNEL_DESC = "Firebase Cloud Messaging";
     private int numMessages = 0;
-
+    CleverTapAPI clevertapDefaultInstance;
 
 
 
@@ -40,7 +46,7 @@ public class xiomireceiver extends PushMessageReceiver {
         bundle.putBundle("bundle",data);
         Intent intent = new Intent(ctx, SecondActivity.class);
         intent.putExtras(bundle);
-
+        clevertapDefaultInstance = CleverTapAPI.getDefaultInstance(ctx);
         //	Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         PendingIntent pendingIntent = PendingIntent.getActivity(ctx, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -111,6 +117,36 @@ public class xiomireceiver extends PushMessageReceiver {
 
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onReceiveRegisterResult(Context context, MiPushCommandMessage miPushCommandMessage) {
+String mRegId;
+        // Log.d("MYPushtest", "Error parsing FCM message",miPushCommandMessage.getCategory().toString());
+        Log.d("tester",
+                "onReceiveRegisterResult is called. " + miPushCommandMessage.toString());
+        String command = miPushCommandMessage.getCommand();
+        List<String> arguments = miPushCommandMessage.getCommandArguments();
+        String cmdArg1 = ((arguments != null && arguments.size() > 0) ? arguments.get(0) : null);
+        String log;
+        if (MiPushClient.COMMAND_REGISTER.equals(command)) {
+            if (miPushCommandMessage.getResultCode() == ErrorCode.SUCCESS) {
+                mRegId = cmdArg1;
+
+                if(CleverTapAPI.getDefaultInstance(context) != null){
+                    CleverTapAPI.getDefaultInstance(context) .pushXiaomiRegistrationId(mRegId,true);
+                  //  Toast.makeText(context,mRegId,Toast.LENGTH_LONG).show();
+                    Log.d("token",
+                            "xiaomi token " +mRegId);
+                }else{
+                    Log.e("TAG","CleverTap is NULL");
+                }
+            } else {
+
+            }
+        } else {
+            log = miPushCommandMessage.getReason();
         }
     }
 }
